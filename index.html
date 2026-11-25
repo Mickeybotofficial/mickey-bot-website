@@ -166,10 +166,50 @@ footer{border-top:1px solid #292319;padding:30px;text-align:center;color:#888;fo
     const { error } = await mbClient.auth.signOut();
     message.textContent = error ? error.message : "You are signed out.";
   };
+async function loadTrialStatus(userId) {
+  const statusEl = document.getElementById("mb-trial-status");
+  const daysEl = document.getElementById("mb-trial-days");
 
+  statusEl.textContent = "Trial status: Loading...";
+
+  const { data, error } = await mbClient
+    .from("subscriptions")
+    .select("plan,status,starts_at,ends_at")
+    .eq("user_id", userId)
+    .eq("plan", "trial")
+    .maybeSingle();
+
+  if (error) {
+    statusEl.textContent = "Trial status: Unable to load";
+    daysEl.textContent = "Please try again.";
+    return;
+  }
+
+  if (!data) {
+    statusEl.textContent = "Trial status: No trial found";
+    daysEl.textContent = "Days remaining: 0";
+    return;
+  }
+
+  const remaining = new Date(data.ends_at).getTime() - Date.now();
+  const days = Math.max(0, Math.ceil(remaining / 86400000));
+
+  if (remaining <= 0) {
+    statusEl.textContent = "Trial status: Expired";
+    daysEl.textContent = "Days remaining: 0";
+  } else {
+    statusEl.textContent = "Trial status: Active";
+    daysEl.textContent = "Days remaining: " + days;
+  }
+}
   mbClient.auth.onAuthStateChange((_event, session) => {
   const loggedIn = !!session;
-
+if (session) {
+  loadTrialStatus(session.user.id);
+} else {
+  document.getElementById("mb-trial-status").textContent = "Trial status: Sign in to view";
+  document.getElementById("mb-trial-days").textContent = "Days remaining: —";
+}
   document.getElementById("mb-dashboard").hidden = !loggedIn;
   document.getElementById("mb-logout").hidden = !loggedIn;
 
