@@ -180,7 +180,7 @@ async function loadTrialStatus(userId) {
     .maybeSingle();
 
   if (error) {
-    statusEl.textContent = "Trial status: Unable to load";
+    statusEl.textContent = "Trial error: " + error.message;
     daysEl.textContent = "Please try again.";
     return;
   }
