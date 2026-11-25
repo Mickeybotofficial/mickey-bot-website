@@ -70,5 +70,92 @@ footer{border-top:1px solid #292319;padding:30px;text-align:center;color:#888;fo
 <p>MICKEY BOT © 2026. All rights reserved.</p>
 <p style="margin-top:12px">Trading involves risk. Profits are never guaranteed.</p>
 </footer>
+
+<!-- MICKEY BOT LOGIN -->
+<section id="mickey-auth" style="background:#080808;color:white;padding:35px 20px;text-align:center;font-family:Arial,sans-serif;">
+  <h2 style="color:#d4af37;">MICKEY BOT VIP</h2>
+  <p>Create your account or sign in</p>
+
+  <div style="max-width:380px;margin:auto;">
+    <input id="mb-name" type="text" placeholder="Full name"
+      style="box-sizing:border-box;width:100%;padding:13px;margin:8px 0;">
+    <input id="mb-email" type="email" placeholder="Email address"
+      style="box-sizing:border-box;width:100%;padding:13px;margin:8px 0;">
+    <input id="mb-password" type="password" placeholder="Password"
+      style="box-sizing:border-box;width:100%;padding:13px;margin:8px 0;">
+
+    <button id="mb-signup" style="width:100%;padding:14px;margin:8px 0;background:#d4af37;color:#080808;border:0;font-weight:bold;">
+      CREATE ACCOUNT
+    </button>
+    <button id="mb-login" style="width:100%;padding:14px;margin:8px 0;background:#222;color:white;border:1px solid #d4af37;">
+      SIGN IN
+    </button>
+    <button id="mb-logout" hidden style="width:100%;padding:14px;margin:8px 0;">
+      SIGN OUT
+    </button>
+    <p id="mb-message" style="color:#d4af37;"></p>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://vbvjzpavlmhxapxiylwt.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_uJw72-BHGI20JGYU_hzJ2Q_ZL3dym1a";
+
+  const mbClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  const message = document.getElementById("mb-message");
+
+  document.getElementById("mb-signup").onclick = async () => {
+    const name = document.getElementById("mb-name").value.trim();
+    const email = document.getElementById("mb-email").value.trim();
+    const password = document.getElementById("mb-password").value;
+
+    if (!name || !email || !password) {
+      message.textContent = "Please complete all fields.";
+      return;
+    }
+
+    const { error } = await mbClient.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: name } }
+    });
+
+    message.textContent = error
+      ? error.message
+      : "Account created! Check your email to confirm your account.";
+  };
+
+  document.getElementById("mb-login").onclick = async () => {
+    const email = document.getElementById("mb-email").value.trim();
+    const password = document.getElementById("mb-password").value;
+
+    const { error } = await mbClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    message.textContent = error
+      ? error.message
+      : "You are signed in!";
+  };
+
+  document.getElementById("mb-logout").onclick = async () => {
+    const { error } = await mbClient.auth.signOut();
+    message.textContent = error ? error.message : "You are signed out.";
+  };
+
+  mbClient.auth.onAuthStateChange((_event, session) => {
+    document.getElementById("mb-logout").hidden = !session;
+  });
+</script>
+<!-- END MICKEY BOT LOGIN -->
+
 </body>
+
+  
 </html>
