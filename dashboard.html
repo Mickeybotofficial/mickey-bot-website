@@ -391,9 +391,22 @@ const mt5ModeStatus = document.getElementById("mt5-mode-status");
 
 mt5Mode.addEventListener("change", () => {
   const selected = mt5Mode.value;
-document.getElementById("bot-mode").textContent = selected.toUpperCase();
+
+  localStorage.setItem("mickeyBotMode", selected);
+
+  document.getElementById("bot-mode").textContent = selected.toUpperCase();
+
   mt5ModeStatus.textContent =
     "Selected: " + (selected === "demo" ? "Demo Account" : "Live Account");
+});
+
+const savedMode = localStorage.getItem("mickeyBotMode") || "demo";
+
+mt5Mode.value = savedMode;
+document.getElementById("bot-mode").textContent = savedMode.toUpperCase();
+
+mt5ModeStatus.textContent =
+  "Selected: " + (savedMode === "demo" ? "Demo Account" : "Live Account");
 });
   const mt5ConnectButton = document.getElementById("mt5-connect");
 
