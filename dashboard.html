@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MICKEY BOT VIP Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #080808;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 30px auto;
+    }
+
+    h1, h2, h3 {
+      color: #d4af37;
+    }
+
+    h1, .subtitle {
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .card {
+      background: #191919;
+      padding: 20px;
+      border: 1px solid #d4af37;
+      border-radius: 12px;
+    }
+
+    button {
+      background: #d4af37;
+      color: #111;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .logout {
+      display: block;
+      margin: 25px auto;
+    }
+
+    footer {
+      text-align: center;
+      color: #aaa;
+      margin-top: 35px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>MICKEY BOT VIP</h1>
+    <p class="subtitle">Welcome to your trading control center</p>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>ACCOUNT</h3>
+        <p id="account-status">Checking account...</p>
+        <p id="mb-vip-access">VIP access: Checking...</p>
+      </div>
+
+      <div class="card">
+        <h3>SUBSCRIPTION</h3>
+        <p id="mb-trial-status">Trial status: Loading...</p>
+        <p id="mb-trial-days">Days remaining: Loading...</p>
+      </div>
+
+      <div class="card">
+        <h3>MT5 CONNECTION</h3>
+        <p>Platform: MetaTrader 5</p>
+        <p>Connection: Not connected</p>
+      </div>
+
+      <div class="card">
+        <h3>BOT STATUS</h3>
+        <p>Trading bot: Not started</p>
+        <p>Automated trading: Not active</p>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3>TRADING HISTORY</h3>
+      <p>No trading activity available yet.</p>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3>ACCOUNT SETTINGS</h3>
+      <p>Manage your MICKEY BOT account and subscription information here.</p>
+    </div>
+
+    <button class="logout" id="mb-logout">SIGN OUT</button>
+
+    <footer>
+      MICKEY BOT © 2026<br>
+      Trading involves risk. Profits are never guaranteed.
+    </footer>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://vbvjzpavlmhxapxiylwt.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_uJw72-BHGI20JGYU_hzJ2Q_ZL3dym1a";
+
+    const mbClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    async function loadDashboard(user) {
+      document.getElementById("account-status").textContent =
+        "Account status: Registered";
+
+      const { data, error } = await mbClient
+        .from("subscriptions")
+        .select("plan,status,starts_at,ends_at")
+        .eq("user_id", user.id)
+        .eq("plan", "trial")
+        .maybeSingle();
+
+      const { data: vipAccess, error: vipError } = await mbClient
+        .rpc("has_mickey_vip_access");
+
+      document.getElementById("mb-vip-access").textContent =
+        vipError ? "VIP access: Unable to verify" :
+        vipAccess ? "VIP access: Active" : "VIP access: Not active";
+
+      if (error || !data) {
+        document.getElementById("mb-trial-status").textContent =
+          error ? "Trial status: Unable to load" : "Trial status: No trial found";
+
+        document.getElementById("mb-trial-days").textContent =
+          "Days remaining: 0";
+        return;
+      }
+
+      const remaining = new Date(data.ends_at).getTime() - Date.now();
+      const days = Math.max(0, Math.ceil(remaining / 86400000));
+
+      document.getElementById("mb-trial-status").textContent =
+        remaining > 0 ? "Trial status: Active" : "Trial status: Expired";
+
+      document.getElementById("mb-trial-days").textContent =
+        "Days remaining: " + days;
+    }
+
+    async function checkSession() {
+      const { data, error } = await mbClient.auth.getSession();
+
+      if (error || !data.session) {
+        window.location.replace("index.html");
+        return;
+      }
+
+      await loadDashboard(data.session.user);
+    }
+
+    mbClient.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT" || !session) {
+        window.location.replace("index.html");
+      }
+    });
+
+    document.getElementById("mb-logout").onclick = async () => {
+      const { error } = await mbClient.auth.signOut();
+
+      if (error) {
+        alert("Sign out failed: " + error.message);
+      } else {
+        window.location.replace("index.html");
+      }
+    };
+
+    checkSession();
+  </script>
+</body>
+</html>
