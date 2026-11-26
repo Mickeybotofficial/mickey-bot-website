@@ -370,7 +370,22 @@ mt5Mode.addEventListener("change", () => {
   mt5ModeStatus.textContent =
     "Selected: " + (selected === "demo" ? "Demo Account" : "Live Account");
 });
-    checkSession();
+  const mt5ConnectButton = document.getElementById("mt5-connect");
+
+mt5ConnectButton.addEventListener("click", () => {
+  const server = document.getElementById("mt5-server").value.trim();
+  const login = document.getElementById("mt5-login").value.trim();
+  const status = document.getElementById("mt5-connection-status");
+
+  if (!server || !login) {
+    status.textContent = "Please enter your MT5 server and account number.";
+    return;
+  }
+
+  status.textContent =
+    "Details entered. Secure MT5 connection service is not configured yet.";
+});  
+  checkSession();
   </script>
 </body>
 </html>
