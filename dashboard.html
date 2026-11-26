@@ -425,7 +425,20 @@ mt5ConnectButton.addEventListener("click", () => {
   status.textContent =
     "Details entered. Secure MT5 connection service is not configured yet.";
 });  
- const startDemoBot = document.getElementById("start-demo-bot");
+const stopLossInput = document.getElementById("mb-stop-loss");
+const dailyLossInput = document.getElementById("mb-daily-loss");
+
+stopLossInput.value = localStorage.getItem("mickeyStopLoss") || "";
+dailyLossInput.value = localStorage.getItem("mickeyDailyLoss") || "";
+
+stopLossInput.addEventListener("change", () => {
+  localStorage.setItem("mickeyStopLoss", stopLossInput.value);
+});
+
+dailyLossInput.addEventListener("change", () => {
+  localStorage.setItem("mickeyDailyLoss", dailyLossInput.value);
+}); 
+  const startDemoBot = document.getElementById("start-demo-bot");
 const stopDemoBot = document.getElementById("stop-demo-bot");
 
 startDemoBot.addEventListener("click", () => {
