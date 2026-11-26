@@ -7,120 +7,250 @@
   <title>MICKEY BOT VIP Dashboard</title>
 
   <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      background: #080808;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
+   * {
+  box-sizing: border-box;
+}
 
-    .container {
-      max-width: 950px;
-      margin: 30px auto;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  background: #070707;
+  color: white;
+  font-family: Arial, sans-serif;
+}
 
-    h1, h2, h3 {
-      color: #d4af37;
-    }
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
 
-    h1, .subtitle {
-      text-align: center;
-    }
+h1, h2, h3 {
+  color: #e5b52e;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 25px;
-    }
+.card {
+  background: linear-gradient(145deg, #191919, #090909);
+  border: 1px solid rgba(229,181,46,0.5);
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+}
 
-    .card {
-      background: #191919;
-      padding: 20px;
-      border: 1px solid #d4af37;
-      border-radius: 12px;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
 
-    button {
-      background: #d4af37;
-      color: #111;
-      border: none;
-      padding: 12px 22px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+button {
+  background: #e5b52e;
+  color: #080808;
+  border: none;
+  padding: 13px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .logout {
-      display: block;
-      margin: 25px auto;
-    }
+.logout {
+  display: block;
+  margin: 25px auto;
+}
 
-    footer {
-      text-align: center;
-      color: #aaa;
-      margin-top: 35px;
-    }
+footer {
+  text-align: center;
+  color: #888;
+  margin-top: 35px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 14px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* TOP NAVIGATION */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 25px;
+  background: #111;
+  border-bottom: 1px solid #b88b20;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.brand {
+  font-size: 23px;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.brand span {
+  color: #e5b52e;
+}
+
+.menu-toggle {
+  font-size: 25px;
+  padding: 8px 14px;
+  background: transparent;
+  color: #e5b52e;
+  border: 1px solid #e5b52e;
+  border-radius: 8px;
+}
+
+.menu-panel {
+  position: absolute;
+  right: 20px;
+  top: 70px;
+  width: 230px;
+  padding: 15px;
+  background: #171717;
+  border: 1px solid #e5b52e;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px #000;
+}
+
+.menu-panel[hidden] {
+  display: none;
+}
+
+.menu-panel a {
+  display: block;
+  padding: 13px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid #333;
+}
+
+.menu-panel a:hover {
+  color: #e5b52e;
+}
+
+.menu-panel button {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.hero {
+  text-align: center;
+  padding: 45px 15px;
+}
+
+.gold-text {
+  color: #e5b52e;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+.robot-area {
+  margin: 35px auto;
+  padding: 35px 15px;
+  max-width: 500px;
+  background: radial-gradient(circle, #29200d, #090909 70%);
+  border: 1px solid #b88b20;
+  border-radius: 20px;
+}
+
+.robot-symbol {
+  width: 130px;
+  height: 130px;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  border: 3px solid #e5b52e;
+  border-radius: 50%;
+  color: #e5b52e;
+  font-size: 42px;
+  font-weight: bold;
+  box-shadow: 0 0 30px #b88b2055;
+} 
   </style>
 </head>
 
 <body>
-  <div class="container">
+ <header class="topbar">
+  <div class="brand">MICKEY <span>BOT</span></div>
 
+  <button id="menu-toggle" class="menu-toggle" aria-label="Open menu">
+    ☰
+  </button>
+
+  <nav id="dashboard-menu" class="menu-panel" hidden>
+    <a href="#overview">Overview</a>
+    <a href="#account">Account</a>
+    <a href="#subscription">Subscription</a>
+    <a href="#connection">MT5 Connection</a>
+    <a href="#history">Trading History</a>
+    <button id="menu-logout">Sign Out</button>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section id="overview" class="hero">
+    <p class="gold-text">WELCOME TO YOUR CONTROL CENTER</p>
     <h1>MICKEY BOT VIP</h1>
-    <p class="subtitle">Welcome to your trading control center</p>
+    <p>Your automated trading dashboard</p>
 
-    <div class="grid">
+    <div class="robot-area">
+      <div class="robot-symbol">MB</div>
+      <h2>MICKEY BOT</h2>
+      <p>BOT STATUS: NOT CONNECTED</p>
+    </div>
+  </section>
 
-      <div class="card">
-        <h3>ACCOUNT</h3>
-        <p id="account-status">Checking account...</p>
-        <p id="mb-vip-access">VIP access: Checking...</p>
-      </div>
+  <section class="grid">
 
-      <div class="card">
-        <h3>SUBSCRIPTION</h3>
-        <p id="mb-trial-status">Trial status: Loading...</p>
-        <p id="mb-trial-days">Days remaining: Loading...</p>
-      </div>
-
-      <div class="card">
-        <h3>MT5 CONNECTION</h3>
-        <p>Platform: MetaTrader 5</p>
-        <p>Connection: Not connected</p>
-      </div>
-
-      <div class="card">
-        <h3>BOT STATUS</h3>
-        <p>Trading bot: Not started</p>
-        <p>Automated trading: Not active</p>
-      </div>
-
+    <div class="card" id="account">
+      <h3>ACCOUNT</h3>
+      <p id="account-status">Checking account...</p>
+      <p id="mb-vip-access">VIP access: Checking...</p>
     </div>
 
-    <div class="card" style="margin-top:20px;">
-      <h3>TRADING HISTORY</h3>
-      <p>No trading activity available yet.</p>
+    <div class="card" id="subscription">
+      <h3>SUBSCRIPTION</h3>
+      <p id="mb-trial-status">Trial status: Loading...</p>
+      <p id="mb-trial-days">Days remaining: Loading...</p>
     </div>
 
-    <div class="card" style="margin-top:20px;">
-      <h3>ACCOUNT SETTINGS</h3>
-      <p>Manage your MICKEY BOT account and subscription information here.</p>
+    <div class="card" id="connection">
+      <h3>MT5 CONNECTION</h3>
+      <p>Platform: MetaTrader 5</p>
+      <p>Connection: Not connected</p>
     </div>
 
-    <button class="logout" id="mb-logout">SIGN OUT</button>
+    <div class="card">
+      <h3>BOT CONTROL</h3>
+      <p>Trading bot: Not started</p>
+      <p>Automated trading: Not active</p>
+    </div>
 
-    <footer>
-      MICKEY BOT © 2026<br>
-      Trading involves risk. Profits are never guaranteed.
-    </footer>
+  </section>
 
-  </div>
+  <section class="card" id="history">
+    <h3>TRADING HISTORY</h3>
+    <p>No trading activity available yet.</p>
+  </section>
 
+  <footer>
+    MICKEY BOT © 2026
+    <p>Trading involves risk. Profits are never guaranteed.</p>
+  </footer>
+
+</main>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
+<script>
     const SUPABASE_URL = "https://vbvjzpavlmhxapxiylwt.supabase.co";
+
     const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_uJw72-BHGI20JGYU_hzJ2Q_ZL3dym1a";
 
     const mbClient = window.supabase.createClient(
@@ -182,15 +312,20 @@
       }
     });
 
-    document.getElementById("mb-logout").onclick = async () => {
-      const { error } = await mbClient.auth.signOut();
+  document.getElementById("menu-logout").onclick = async () => {
+  const { error } = await mbClient.auth.signOut();
 
-      if (error) {
-        alert("Sign out failed: " + error.message);
-      } else {
-        window.location.replace("index.html");
-      }
-    };
+  if (error) {
+    alert("Sign out failed: " + error.message);
+  } else {
+    window.location.replace("index.html");
+  }
+};
+
+document.getElementById("menu-toggle").onclick = () => {
+  const menu = document.getElementById("dashboard-menu");
+  menu.hidden = !menu.hidden;
+};
 
     checkSession();
   </script>
