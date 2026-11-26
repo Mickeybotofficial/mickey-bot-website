@@ -338,7 +338,25 @@ footer {
       document.getElementById("mb-vip-access").textContent =
         vipError ? "VIP access: Unable to verify" :
         vipAccess ? "VIP access: Active" : "VIP access: Not active";
+      const { data: riskSettings, error: riskError } = await mbClient
+        .from("user_risk_settings")
+        .select("stop_loss_pips,daily_loss_limit_usd")
+        .eq("user_id", user.id)
+        .maybeSingle();
 
+      if (riskError) {
+        console.error("Risk settings load failed:", riskError.message);
+        document.getElementById("mb-risk-save-status").textContent =
+          "Could not load saved risk settings.";
+      } else if (riskSettings) {
+        document.getElementById("mb-stop-loss").value =
+          riskSettings.stop_loss_pips;
+        document.getElementById("mb-daily-loss").value =
+          riskSettings.daily_loss_limit_usd;
+
+        document.getElementById("mb-risk-save-status").textContent =
+          "Saved risk settings loaded.";
+      }
       if (error || !data) {
         document.getElementById("mb-trial-status").textContent =
           error ? "Trial status: Unable to load" : "Trial status: No trial found";
@@ -357,25 +375,7 @@ footer {
       document.getElementById("mb-trial-days").textContent =
   "Days remaining: " + days;
 
-const { data: riskSettings, error: riskError } = await mbClient
-  .from("user_risk_settings")
-  .select("stop_loss_pips,daily_loss_limit_usd")
-  .eq("user_id", user.id)
-  .maybeSingle();
 
-if (riskError) {
-  console.error("Risk settings load failed:", riskError.message);
-  document.getElementById("mb-risk-save-status").textContent =
-    "Could not load saved risk settings.";
-} else if (riskSettings) {
-  document.getElementById("mb-stop-loss").value =
-    riskSettings.stop_loss_pips;
-  document.getElementById("mb-daily-loss").value =
-    riskSettings.daily_loss_limit_usd;
-
-  document.getElementById("mb-risk-save-status").textContent =
-    "Saved risk settings loaded.";
-}
 }
 
     async function checkSession() {
