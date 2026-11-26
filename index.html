@@ -99,22 +99,59 @@ footer{border-top:1px solid #292319;padding:30px;text-align:center;color:#888;fo
 
 
 
+
 <!-- MICKEY BOT CUSTOMER DASHBOARD -->
-<div id="mb-dashboard" hidden style="background:#111;color:white;padding:25px;margin:20px auto;max-width:600px;border:1px solid #d4af37;border-radius:12px;text-align:center;">
-  <h2 style="color:#d4af37;">WELCOME TO MICKEY BOT VIP</h2>
-  <p>Your customer dashboard</p>
-  <p>Account status: Registered</p>
-  <p>Your MICKEY BOT account is ready.</p>
-  <p id="mb-vip-access">VIP access: Checking...</p>
-  <div id="mb-trial" style="margin-top:25px;padding:20px;border:1px solid #d4af37;border-radius:10px;">
-  <h3 style="color:#d4af37;">YOUR FREE TRIAL</h3>
-  <p>Enjoy 7 days of MICKEY BOT VIP access.</p>
-  <p>Trial duration: <strong>7 days</strong></p>
-  <p id="mb-trial-status">Trial status: Awaiting activation</p>
-  <p id="mb-trial-days">Days remaining: Not started</p>
-</div>
+<div id="mb-dashboard" hidden style="background:#0b0b0b;color:white;padding:25px;margin:20px auto;max-width:900px;border:1px solid #d4af37;border-radius:15px;">
+
+  <h2 style="color:#d4af37;text-align:center;">MICKEY BOT DASHBOARD</h2>
+  <p style="text-align:center;color:#ccc;">Welcome to your trading control center</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-top:25px;">
+
+    <div style="background:#191919;padding:20px;border:1px solid #d4af37;border-radius:10px;">
+      <h3 style="color:#d4af37;">ACCOUNT</h3>
+      <p>Account status: Registered</p>
+      <p id="mb-vip-access">VIP access: Checking...</p>
+    </div>
+
+    <div style="background:#191919;padding:20px;border:1px solid #d4af37;border-radius:10px;">
+      <h3 style="color:#d4af37;">SUBSCRIPTION</h3>
+      <p>Trial duration: 7 days</p>
+      <p id="mb-trial-status">Trial status: Awaiting activation</p>
+      <p id="mb-trial-days">Days remaining: Not started</p>
+    </div>
+
+    <div style="background:#191919;padding:20px;border:1px solid #d4af37;border-radius:10px;">
+      <h3 style="color:#d4af37;">MT5 CONNECTION</h3>
+      <p>Connection status: Not connected</p>
+      <p>Platform: MetaTrader 5</p>
+    </div>
+
+    <div style="background:#191919;padding:20px;border:1px solid #d4af37;border-radius:10px;">
+      <h3 style="color:#d4af37;">BOT STATUS</h3>
+      <p>Trading bot: Not started</p>
+      <p>Automated trading: Not active</p>
+    </div>
+
+  </div>
+
+  <div style="margin-top:25px;padding:20px;background:#191919;border:1px solid #d4af37;border-radius:10px;">
+    <h3 style="color:#d4af37;">TRADING HISTORY</h3>
+    <p>No trading activity available yet.</p>
+  </div>
+
+  <div style="margin-top:25px;padding:20px;background:#191919;border:1px solid #d4af37;border-radius:10px;">
+    <h3 style="color:#d4af37;">ACCOUNT SETTINGS</h3>
+    <p>Manage your MICKEY BOT account and subscription information here.</p>
+  </div>
+
+  <p style="text-align:center;color:#aaa;margin-top:25px;">
+    MICKEY BOT © 2026 | Trading involves risk. Profits are never guaranteed.
+  </p>
+
 </div>
 <!-- END CUSTOMER DASHBOARD -->
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
