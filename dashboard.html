@@ -274,7 +274,8 @@ footer {
   <hr>
 
   <h3>RISK MANAGEMENT</h3>
-  <label for="mb-stop-loss">Stop Loss (pips)</label>
+  <p id="mb-risk-save-status">Risk settings not saved yet.</p>
+     <label for="mb-stop-loss">Stop Loss (pips)</label>
 <input type="number" id="mb-stop-loss" min="1" placeholder="Enter stop loss in pips">
   <label for="mb-daily-loss">Daily Loss Limit (USD)</label>
 <input type="number" id="mb-daily-loss" min="1" placeholder="Enter daily loss limit">
@@ -354,8 +355,28 @@ footer {
         remaining > 0 ? "Trial status: Active" : "Trial status: Expired";
 
       document.getElementById("mb-trial-days").textContent =
-        "Days remaining: " + days;
-    }
+  "Days remaining: " + days;
+
+const { data: riskSettings, error: riskError } = await mbClient
+  .from("user_risk_settings")
+  .select("stop_loss_pips,daily_loss_limit_usd")
+  .eq("user_id", user.id)
+  .maybeSingle();
+
+if (riskError) {
+  console.error("Risk settings load failed:", riskError.message);
+  document.getElementById("mb-risk-save-status").textContent =
+    "Could not load saved risk settings.";
+} else if (riskSettings) {
+  document.getElementById("mb-stop-loss").value =
+    riskSettings.stop_loss_pips;
+  document.getElementById("mb-daily-loss").value =
+    riskSettings.daily_loss_limit_usd;
+
+  document.getElementById("mb-risk-save-status").textContent =
+    "Saved risk settings loaded.";
+}
+}
 
     async function checkSession() {
       const { data, error } = await mbClient.auth.getSession();
@@ -428,16 +449,54 @@ mt5ConnectButton.addEventListener("click", () => {
 const stopLossInput = document.getElementById("mb-stop-loss");
 const dailyLossInput = document.getElementById("mb-daily-loss");
 
-stopLossInput.value = localStorage.getItem("mickeyStopLoss") || "";
-dailyLossInput.value = localStorage.getItem("mickeyDailyLoss") || "";
+stopLossInput.value = localStorage.getItem("mickeyStopLoss") || "50";
+dailyLossInput.value = localStorage.getItem("mickeyDailyLoss") || "10";
+
+const riskSaveStatus = document.getElementById("mb-risk-save-status");
 
 stopLossInput.addEventListener("change", () => {
   localStorage.setItem("mickeyStopLoss", stopLossInput.value);
+  saveRiskSettings();
 });
 
 dailyLossInput.addEventListener("change", () => {
   localStorage.setItem("mickeyDailyLoss", dailyLossInput.value);
-}); 
+  saveRiskSettings();
+});
+async function saveRiskSettings() {
+  const { data: sessionData, error: sessionError } =
+    await mbClient.auth.getSession();
+
+  if (sessionError || !sessionData.session) {
+    riskSaveStatus.textContent = "Please log in again.";
+    return;
+  }
+
+  const stopLoss = Number(stopLossInput.value);
+  const dailyLoss = Number(dailyLossInput.value);
+
+  if (!Number.isFinite(stopLoss) || stopLoss <= 0 ||
+      !Number.isFinite(dailyLoss) || dailyLoss <= 0) {
+    riskSaveStatus.textContent = "Enter valid positive numbers.";
+    return;
+  }
+
+  riskSaveStatus.textContent = "Saving...";
+
+  const { error } = await mbClient
+    .from("user_risk_settings")
+    .upsert({
+      user_id: sessionData.session.user.id,
+      stop_loss_pips: stopLoss,
+      daily_loss_limit_usd: dailyLoss,
+      updated_at: new Date().toISOString()
+    }, { onConflict: "user_id" });
+
+  riskSaveStatus.textContent = error
+    ? "Save failed: " + error.message
+    : "Risk settings saved successfully.";
+}
+
   const startDemoBot = document.getElementById("start-demo-bot");
 const stopDemoBot = document.getElementById("stop-demo-bot");
 
