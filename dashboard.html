@@ -234,10 +234,34 @@ footer {
     </div>
 
     <div class="card" id="connection">
-      <h3>MT5 CONNECTION</h3>
-      <p>Platform: MetaTrader 5</p>
-      <p>Connection: Not connected</p>
-          </div>
+  <h3>MT5 CONNECTION</h3>
+
+  <label for="mt5-server">Broker Server</label>
+  <input
+    type="text"
+    id="mt5-server"
+    placeholder="Enter your Exness MT5 server"
+  >
+
+  <label for="mt5-login">MT5 Account Number</label>
+  <input
+    type="text"
+    id="mt5-login"
+    placeholder="Enter your MT5 login number"
+  >
+
+  <button type="button" id="mt5-connect">
+    CONNECT MT5
+  </button>
+
+  <p id="mt5-connection-status">
+    Connection: Not connected
+  </p>
+
+  <p class="gold-text">
+    Secure connection service not configured yet.
+  </p>
+</div>
 
     <div class="card">
       <h3>BOT CONTROL</h3>
