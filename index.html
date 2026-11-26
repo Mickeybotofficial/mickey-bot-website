@@ -190,14 +190,16 @@ footer{border-top:1px solid #292319;padding:30px;text-align:center;color:#888;fo
     const email = document.getElementById("mb-email").value.trim();
     const password = document.getElementById("mb-password").value;
 
-    const { error } = await mbClient.auth.signInWithPassword({
-      email,
-      password
-    });
+   const { error } = await mbClient.auth.signInWithPassword({
+  email,
+  password
+});
 
-    message.textContent = error
-      ? error.message
-      : "You are signed in!";
+if (error) {
+  message.textContent = error.message;
+} else {
+  window.location.href = "dashboard.html";
+}
   };
 
   document.getElementById("mb-logout").onclick = async () => {
