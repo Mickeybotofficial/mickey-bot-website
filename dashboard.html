@@ -207,7 +207,18 @@ footer {
       <p>BOT STATUS: NOT CONNECTED</p>
     </div>
   </section>
+<section class="card" id="mt5-account">
+  <h3>MT5 ACCOUNT TYPE</h3>
+  <p>Select the account you want to connect:</p>
 
+  <label for="mt5-mode">Account Type</label>
+  <select id="mt5-mode">
+    <option value="demo">Demo Account</option>
+    <option value="live">Live Account</option>
+  </select>
+
+  <p id="mt5-mode-status">Selected: Demo Account</p>
+</section>
   <section class="grid">
 
     <div class="card" id="account">
@@ -226,7 +237,7 @@ footer {
       <h3>MT5 CONNECTION</h3>
       <p>Platform: MetaTrader 5</p>
       <p>Connection: Not connected</p>
-    </div>
+          </div>
 
     <div class="card">
       <h3>BOT CONTROL</h3>
@@ -326,7 +337,15 @@ document.getElementById("menu-toggle").onclick = () => {
   const menu = document.getElementById("dashboard-menu");
   menu.hidden = !menu.hidden;
 };
+const mt5Mode = document.getElementById("mt5-mode");
+const mt5ModeStatus = document.getElementById("mt5-mode-status");
 
+mt5Mode.addEventListener("change", () => {
+  const selected = mt5Mode.value;
+
+  mt5ModeStatus.textContent =
+    "Selected: " + (selected === "demo" ? "Demo Account" : "Live Account");
+});
     checkSession();
   </script>
 </body>
