@@ -105,6 +105,7 @@ footer{border-top:1px solid #292319;padding:30px;text-align:center;color:#888;fo
   <p>Your customer dashboard</p>
   <p>Account status: Registered</p>
   <p>Your MICKEY BOT account is ready.</p>
+  <p id="mb-vip-access">VIP access: Checking...</p>
   <div id="mb-trial" style="margin-top:25px;padding:20px;border:1px solid #d4af37;border-radius:10px;">
   <h3 style="color:#d4af37;">YOUR FREE TRIAL</h3>
   <p>Enjoy 7 days of MICKEY BOT VIP access.</p>
@@ -178,7 +179,14 @@ async function loadTrialStatus(userId) {
     .eq("user_id", userId)
     .eq("plan", "trial")
     .maybeSingle();
+const { data: vipAccess, error: vipError } = await mbClient
+  .rpc("has_mickey_vip_access");
 
+if (vipError) {
+  console.error("VIP access check failed:", vipError.message);
+} else {
+  console.log("VIP access allowed:", vipAccess);
+}
   if (error) {
     statusEl.textContent = "Trial error: " + error.message;
     daysEl.textContent = "Please try again.";
