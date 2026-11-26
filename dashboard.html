@@ -279,7 +279,19 @@ footer {
 
   <p class="gold-text">
     Trading engine: Not connected
-  </p>
+  </p><div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+  <button type="button" id="start-demo-bot">
+    START DEMO BOT
+  </button>
+
+  <button type="button" id="stop-demo-bot">
+    STOP BOT
+  </button>
+</div>
+
+<p id="demo-bot-message">
+  Demo simulation is stopped.
+</p>
 </div>
 
   </section>
@@ -398,6 +410,23 @@ mt5ConnectButton.addEventListener("click", () => {
   status.textContent =
     "Details entered. Secure MT5 connection service is not configured yet.";
 });  
+ const startDemoBot = document.getElementById("start-demo-bot");
+const stopDemoBot = document.getElementById("stop-demo-bot");
+
+startDemoBot.addEventListener("click", () => {
+  document.getElementById("bot-status").textContent = "DEMO SIMULATION RUNNING";
+  document.getElementById("market-status").textContent = "SIMULATION ONLY";
+  document.getElementById("demo-bot-message").textContent =
+    "Demo simulation started. No real trades are being placed.";
+});
+
+stopDemoBot.addEventListener("click", () => {
+  document.getElementById("bot-status").textContent = "STOPPED";
+  document.getElementById("market-status").textContent = "WAITING";
+  document.getElementById("trading-signal").textContent = "HOLD";
+  document.getElementById("demo-bot-message").textContent =
+    "Demo simulation stopped. No real trades were placed.";
+}); 
   checkSession();
   </script>
 </body>
