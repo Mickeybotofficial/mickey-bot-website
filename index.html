@@ -182,16 +182,17 @@ async function loadTrialStatus(userId) {
 const { data: vipAccess, error: vipError } = await mbClient
   .rpc("has_mickey_vip_access");
 
+
+ const vipStatus = document.getElementById("mb-vip-access");
+
 if (vipError) {
-  console.error("VIP access check failed:", vipError.message);
+  vipStatus.textContent = "VIP access: Unable to verify";
+  console.error(vipError.message);
 } else {
-  console.log("VIP access allowed:", vipAccess);
+  vipStatus.textContent = vipAccess
+    ? "VIP access: Active"
+    : "VIP access: Not active";
 }
-  if (error) {
-    statusEl.textContent = "Trial error: " + error.message;
-    daysEl.textContent = "Please try again.";
-    return;
-  }
 
   if (!data) {
     statusEl.textContent = "Trial status: No trial found";
@@ -217,6 +218,7 @@ if (session) {
 } else {
   document.getElementById("mb-trial-status").textContent = "Trial status: Sign in to view";
   document.getElementById("mb-trial-days").textContent = "Days remaining: —";
+  document.getElementById("mb-vip-access").textContent = "VIP access: Sign in to view"; 
 }
   document.getElementById("mb-dashboard").hidden = !loggedIn;
   document.getElementById("mb-logout").hidden = !loggedIn;
@@ -227,7 +229,7 @@ if (session) {
   document.getElementById("mb-email").hidden = loggedIn;
   document.getElementById("mb-password").hidden = loggedIn;
 });
-</script>
+</script> 
 <!-- END MICKEY BOT LOGIN -->
 
 </body>
