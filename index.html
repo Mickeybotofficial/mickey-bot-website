@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MICKEY BOT | Trade Smart</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#090909;color:#fff;font-family:Arial,sans-serif}
@@ -27,251 +28,268 @@ h2 span{color:#d6aa45}
 .card p{color:#aaa;line-height:1.7}
 .notice{color:#d6aa45;margin-top:25px}
 footer{border-top:1px solid #292319;padding:30px;text-align:center;color:#888;font-size:13px}
+
+.auth-input{
+  box-sizing:border-box;
+  width:100%;
+  padding:13px;
+  margin:8px 0;
+  border:1px solid #444;
+  border-radius:4px;
+  background:#151515;
+  color:white;
+}
+.auth-button{
+  width:100%;
+  padding:14px;
+  margin:8px 0;
+  cursor:pointer;
+  font-weight:bold;
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="logo">MICKEY BOT</div>
-<nav>
-<a href="#about">About</a>
-<a href="#features">Features</a>
-<a href="#pricing">Pricing</a>
-</nav>
+  <div class="logo">MICKEY BOT</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+  </nav>
 </header>
 
 <div class="hero">
-<div class="tag">WELCOME TO MICKEY BOT</div>
-<h1>TRADE SMART.<br><span>THINK BIG.</span></h1>
-<p>A new approach to automated trading, built around intelligent tools, responsible risk management and greater control.</p>
-<a class="btn" href="#features">EXPLORE MICKEY BOT</a>
+  <div class="tag">WELCOME TO MICKEY BOT</div>
+  <h1>TRADE SMART.<br><span>THINK BIG.</span></h1>
+  <p>A new approach to automated trading, built around intelligent tools, responsible risk management and greater control.</p>
+  <a class="btn" href="#features">EXPLORE MICKEY BOT</a>
 </div>
 
 <section id="about">
-<h2>About <span>MICKEY BOT</span></h2>
-<p class="description">MICKEY BOT is being developed to make automated trading tools more accessible, with a focus on transparency, user control and responsible trading.</p>
+  <h2>About <span>MICKEY BOT</span></h2>
+  <p class="description">
+    MICKEY BOT is being developed to make automated trading tools more accessible, with a focus on transparency, user control and responsible trading.
+  </p>
 </section>
 
 <section id="features">
-<h2>Why <span>MICKEY BOT?</span></h2>
-<div class="cards">
-<div class="card"><h3>Smart Technology</h3><p>Automated trading technology designed to follow defined strategies.</p></div>
-<div class="card"><h3>Risk Control</h3><p>Risk settings designed to help users manage their trading exposure.</p></div>
-<div class="card"><h3>User Dashboard</h3><p>A planned dashboard for accounts, subscriptions and trading activity.</p></div>
-</div>
+  <h2>Why <span>MICKEY BOT?</span></h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Smart Technology</h3>
+      <p>Automated trading technology designed to follow defined strategies.</p>
+    </div>
+
+    <div class="card">
+      <h3>Risk Control</h3>
+      <p>Risk settings designed to help users manage their trading exposure.</p>
+    </div>
+
+    <div class="card">
+      <h3>User Dashboard</h3>
+      <p>A dashboard for accounts, subscriptions and trading activity.</p>
+    </div>
+  </div>
 </section>
 
 <section id="pricing">
-<h2>MICKEY BOT <span>VIP</span></h2>
-<p class="description">Membership plans and a 7-day trial are planned. Registration and payments are not yet open.</p>
-<p class="notice">COMING SOON</p>
+  <h2>MICKEY BOT <span>VIP</span></h2>
+  <p class="description">
+    Membership plans and a 7-day trial are planned. Registration and payments are not yet open.
+  </p>
+  <p class="notice">COMING SOON</p>
 </section>
 
 <footer>
-<p>MICKEY BOT © 2026. All rights reserved.</p>
-<p style="margin-top:12px">Trading involves risk. Profits are never guaranteed.</p>
+  <p>MICKEY BOT © 2026. All rights reserved.</p>
+  <p style="margin-top:12px">Trading involves risk. Profits are never guaranteed.</p>
 </footer>
 
-<!-- MICKEY BOT LOGIN -->
+<!-- MICKEY BOT ACCOUNT LOGIN -->
+
 <section id="mickey-auth" style="background:#080808;color:white;padding:35px 20px;text-align:center;font-family:Arial,sans-serif;">
+
   <h2 style="color:#d4af37;">MICKEY BOT VIP</h2>
   <p>Create your account or sign in</p>
 
-  <div style="max-width:380px;margin:auto;">
-    <input id="mb-name" type="text" placeholder="Full name"
-      style="box-sizing:border-box;width:100%;padding:13px;margin:8px 0;">
-    <input id="mb-email" type="email" placeholder="Email address"
-      style="box-sizing:border-box;width:100%;padding:13px;margin:8px 0;">
-    <input id="mb-password" type="password" placeholder="Password"
-      style="box-sizing:border-box;width:100%;padding:13px;margin:8px 0;">
+  <div style="max-width:380px;margin:20px auto 0;">
 
-    <button id="mb-signup" style="width:100%;padding:14px;margin:8px 0;background:#d4af37;color:#080808;border:0;font-weight:bold;">
+    <input
+      id="mb-name"
+      class="auth-input"
+      type="text"
+      placeholder="Full name"
+      autocomplete="name"
+    >
+
+    <input
+      id="mb-email"
+      class="auth-input"
+      type="email"
+      placeholder="Email address"
+      autocomplete="email"
+    >
+
+    <input
+      id="mb-password"
+      class="auth-input"
+      type="password"
+      placeholder="Password"
+      autocomplete="new-password"
+    >
+
+    <button
+      id="mb-signup"
+      class="auth-button"
+      style="background:#d4af37;color:#080808;border:0;"
+    >
       CREATE ACCOUNT
     </button>
-    <button id="mb-login" style="width:100%;padding:14px;margin:8px 0;background:#222;color:white;border:1px solid #d4af37;">
+
+    <button
+      id="mb-login"
+      class="auth-button"
+      style="background:#222;color:white;border:1px solid #d4af37;"
+    >
       SIGN IN
     </button>
-    <button id="mb-logout" hidden style="width:100%;padding:14px;margin:8px 0;">
-      SIGN OUT
-    </button>
-    <p id="mb-message" style="color:#d4af37;"></p>
+
+    <p id="mb-message" style="color:#d4af37;margin-top:12px;line-height:1.6;"></p>
+
   </div>
 </section>
 
-
-
-
-<!-- MICKEY BOT CUSTOMER DASHBOARD -->
-<div id="mb-dashboard" hidden style="background:#0b0b0b;color:white;padding:25px;margin:20px auto;max-width:900px;border:1px solid #d4af37;border-radius:15px;">
-
-  <h2 style="color:#d4af37;text-align:center;">MICKEY BOT DASHBOARD</h2>
-  <p style="text-align:center;color:#ccc;">Welcome to your trading control center</p>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-top:25px;">
-
-    <div style="background:#191919;padding:20px;border:1px solid #d4af37;border-radius:10px;">
-      <h3 style="color:#d4af37;">ACCOUNT</h3>
-      <p>Account status: Registered</p>
-      <p id="mb-vip-access">VIP access: Checking...</p>
-    </div>
-
-    <div style="background:#191919;padding:20px;border:1px solid #d4af37;border-radius:10px;">
-      <h3 style="color:#d4af37;">SUBSCRIPTION</h3>
-      <p>Trial duration: 7 days</p>
-      <p id="mb-trial-status">Trial status: Awaiting activation</p>
-      <p id="mb-trial-days">Days remaining: Not started</p>
-    </div>
-
-    <div style="background:#191919;padding:20px;border:1px solid #d4af37;border-radius:10px;">
-      <h3 style="color:#d4af37;">MT5 CONNECTION</h3>
-      <p>Connection status: Not connected</p>
-      <p>Platform: MetaTrader 5</p>
-    </div>
-
-    <div style="background:#191919;padding:20px;border:1px solid #d4af37;border-radius:10px;">
-      <h3 style="color:#d4af37;">BOT STATUS</h3>
-      <p>Trading bot: Not started</p>
-      <p>Automated trading: Not active</p>
-    </div>
-
-  </div>
-
-  <div style="margin-top:25px;padding:20px;background:#191919;border:1px solid #d4af37;border-radius:10px;">
-    <h3 style="color:#d4af37;">TRADING HISTORY</h3>
-    <p>No trading activity available yet.</p>
-  </div>
-
-  <div style="margin-top:25px;padding:20px;background:#191919;border:1px solid #d4af37;border-radius:10px;">
-    <h3 style="color:#d4af37;">ACCOUNT SETTINGS</h3>
-    <p>Manage your MICKEY BOT account and subscription information here.</p>
-  </div>
-
-  <p style="text-align:center;color:#aaa;margin-top:25px;">
-    MICKEY BOT © 2026 | Trading involves risk. Profits are never guaranteed.
-  </p>
-
-</div>
-<!-- END CUSTOMER DASHBOARD -->
+<!-- END MICKEY BOT ACCOUNT LOGIN -->
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-  const SUPABASE_URL = "https://vbvjzpavlmhxapxiylwt.supabase.co";
-  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_uJw72-BHGI20JGYU_hzJ2Q_ZL3dym1a";
+const SUPABASE_URL = "https://vbvjzpavlmhxapxiylwt.supabase.co";
 
-  const mbClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_uJw72-BHGI20JGYU_hzJ2Q_ZL3dym1a";
 
-  const message = document.getElementById("mb-message");
+const mbClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 
-  document.getElementById("mb-signup").onclick = async () => {
-    const name = document.getElementById("mb-name").value.trim();
-    const email = document.getElementById("mb-email").value.trim();
-    const password = document.getElementById("mb-password").value;
+const message = document.getElementById("mb-message");
 
-    if (!name || !email || !password) {
-      message.textContent = "Please complete all fields.";
-      return;
-    }
+const signupButton = document.getElementById("mb-signup");
+const loginButton = document.getElementById("mb-login");
 
-    const { error } = await mbClient.auth.signUp({
-      email,
-      password,
-      options: { data: { full_name: name } }
-    });
 
-    message.textContent = error
-      ? error.message
-      : "Account created! Check your email to confirm your account.";
-  };
+// REDIRECT SIGNED-IN USERS TO THEIR DASHBOARD
 
-  document.getElementById("mb-login").onclick = async () => {
-    const email = document.getElementById("mb-email").value.trim();
-    const password = document.getElementById("mb-password").value;
-
-   const { error } = await mbClient.auth.signInWithPassword({
-  email,
-  password
+mbClient.auth.onAuthStateChange((event, session) => {
+  if (session) {
+    window.location.replace("dashboard.html");
+  }
 });
 
-if (error) {
-  message.textContent = error.message;
-} else {
-  window.location.href = "dashboard.html";
-}
-  };
 
-  document.getElementById("mb-logout").onclick = async () => {
-    const { error } = await mbClient.auth.signOut();
-    message.textContent = error ? error.message : "You are signed out.";
-  };
-async function loadTrialStatus(userId) {
-  const statusEl = document.getElementById("mb-trial-status");
-  const daysEl = document.getElementById("mb-trial-days");
+// CHECK IF A USER IS ALREADY SIGNED IN
 
-  statusEl.textContent = "Trial status: Loading...";
-
-  const { data, error } = await mbClient
-    .from("subscriptions")
-    .select("plan,status,starts_at,ends_at")
-    .eq("user_id", userId)
-    .eq("plan", "trial")
-    .maybeSingle();
-const { data: vipAccess, error: vipError } = await mbClient
-  .rpc("has_mickey_vip_access");
+mbClient.auth.getSession().then(({ data, error }) => {
+  if (!error && data.session) {
+    window.location.replace("dashboard.html");
+  }
+});
 
 
- const vipStatus = document.getElementById("mb-vip-access");
+// CREATE ACCOUNT
 
-if (vipError) {
-  vipStatus.textContent = "VIP access: Unable to verify";
-  console.error(vipError.message);
-} else {
-  vipStatus.textContent = vipAccess
-    ? "VIP access: Active"
-    : "VIP access: Not active";
-}
+signupButton.onclick = async () => {
 
-  if (!data) {
-    statusEl.textContent = "Trial status: No trial found";
-    daysEl.textContent = "Days remaining: 0";
+  const name = document.getElementById("mb-name").value.trim();
+  const email = document.getElementById("mb-email").value.trim();
+  const password = document.getElementById("mb-password").value;
+
+  if (!name || !email || !password) {
+    message.textContent = "Please complete all fields.";
     return;
   }
 
-  const remaining = new Date(data.ends_at).getTime() - Date.now();
-  const days = Math.max(0, Math.ceil(remaining / 86400000));
+  signupButton.disabled = true;
+  message.textContent = "Creating your account...";
 
-  if (remaining <= 0) {
-    statusEl.textContent = "Trial status: Expired";
-    daysEl.textContent = "Days remaining: 0";
-  } else {
-    statusEl.textContent = "Trial status: Active";
-    daysEl.textContent = "Days remaining: " + days;
+  try {
+
+    const { data, error } = await mbClient.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: {
+          full_name: name
+        }
+      }
+    });
+
+    if (error) {
+      message.textContent = error.message;
+      signupButton.disabled = false;
+      return;
+    }
+
+    if (data.session) {
+      message.textContent = "Account created! Opening your dashboard...";
+      window.location.replace("dashboard.html");
+    } else {
+      message.textContent =
+        "Account created! Please confirm your email, then sign in.";
+      signupButton.disabled = false;
+    }
+
+  } catch (error) {
+    message.textContent = "Something went wrong. Please try again.";
+    signupButton.disabled = false;
   }
-}
-  mbClient.auth.onAuthStateChange((_event, session) => {
-  const loggedIn = !!session;
-if (session) {
-  loadTrialStatus(session.user.id);
-} else {
-  document.getElementById("mb-trial-status").textContent = "Trial status: Sign in to view";
-  document.getElementById("mb-trial-days").textContent = "Days remaining: —";
-  document.getElementById("mb-vip-access").textContent = "VIP access: Sign in to view"; 
-}
-  document.getElementById("mb-dashboard").hidden = !loggedIn;
-  document.getElementById("mb-logout").hidden = !loggedIn;
+};
 
-  document.getElementById("mb-signup").hidden = loggedIn;
-  document.getElementById("mb-login").hidden = loggedIn;
-  document.getElementById("mb-name").hidden = loggedIn;
-  document.getElementById("mb-email").hidden = loggedIn;
-  document.getElementById("mb-password").hidden = loggedIn;
-});
-</script> 
-<!-- END MICKEY BOT LOGIN -->
+
+// SIGN IN
+
+loginButton.onclick = async () => {
+
+  const email = document.getElementById("mb-email").value.trim();
+  const password = document.getElementById("mb-password").value;
+
+  if (!email || !password) {
+    message.textContent = "Enter your email and password.";
+    return;
+  }
+
+  loginButton.disabled = true;
+  message.textContent = "Signing in...";
+
+  try {
+
+    const { error } = await mbClient.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error) {
+      message.textContent = error.message;
+      loginButton.disabled = false;
+      return;
+    }
+
+    message.textContent = "Login successful! Opening dashboard...";
+
+    window.location.replace("dashboard.html");
+
+  } catch (error) {
+    message.textContent = "Something went wrong. Please try again.";
+    loginButton.disabled = false;
+  }
+};
+
+</script>
 
 </body>
-
-  
 </html>
