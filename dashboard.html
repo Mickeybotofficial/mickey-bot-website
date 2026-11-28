@@ -548,7 +548,41 @@ stopDemoBot.addEventListener("click", () => {
   document.getElementById("trading-signal").textContent = "HOLD";
   document.getElementById("demo-bot-message").textContent =
     "Demo simulation stopped. No real trades were placed.";
-}); 
+});
+  const generateActivationButton =
+  document.getElementById("generate-activation");
+
+generateActivationButton.addEventListener("click", async () => {
+  const status = document.getElementById("activation-status");
+  const result = document.getElementById("activation-code-result");
+  const plan = document.getElementById("activation-plan").value;
+
+  status.textContent = "Generating...";
+  result.textContent = "";
+
+  const { data, error } = await mbClient.functions.invoke(
+    "admin-activation",
+    {
+      body: { plan }
+    }
+  );
+
+  if (error) {
+    status.textContent = "Generation failed: " + error.message;
+    return;
+  }
+
+  if (data?.error) {
+    status.textContent = "Generation failed: " + data.error;
+    return;
+  }
+
+  result.textContent = data.code || "No code returned.";
+
+  status.textContent = data.code
+    ? "Code generated. Verify payment before sharing."
+    : "No code generated.";
+});
   checkSession();
   </script>
 </body>
