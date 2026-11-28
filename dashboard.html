@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,344 +6,396 @@
   <title>MICKEY BOT VIP Dashboard</title>
 
   <style>
-   * {
-  box-sizing: border-box;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  background: #070707;
-  color: white;
-  font-family: Arial, sans-serif;
-}
+    body {
+      margin: 0;
+      padding: 0;
+      background: #070707;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
 
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
 
-h1, h2, h3 {
-  color: #e5b52e;
-}
+    h1, h2, h3 {
+      color: #e5b52e;
+    }
 
-.card {
-  background: linear-gradient(145deg, #191919, #090909);
-  border: 1px solid rgba(229,181,46,0.5);
-  border-radius: 18px;
-  padding: 22px;
-  margin-bottom: 18px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-}
+    .card {
+      background: linear-gradient(145deg, #191919, #090909);
+      border: 1px solid rgba(229,181,46,0.5);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
 
-button {
-  background: #e5b52e;
-  color: #080808;
-  border: none;
-  padding: 13px 25px;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    button {
+      background: #e5b52e;
+      color: #080808;
+      border: none;
+      padding: 13px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.logout {
-  display: block;
-  margin: 25px auto;
-}
+    input, select {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 18px;
+      border-radius: 8px;
+      border: 1px solid #b88b20;
+      background: #111;
+      color: white;
+    }
 
-footer {
-  text-align: center;
-  color: #888;
-  margin-top: 35px;
-}
+    .btn {
+      display: inline-block;
+      background: #e5b52e;
+      color: #080808;
+      padding: 13px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+    }
 
-@media (max-width: 600px) {
-  .container {
-    padding: 14px;
-  }
+    .logout {
+      display: block;
+      margin: 25px auto;
+    }
 
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* TOP NAVIGATION */
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 25px;
-  background: #111;
-  border-bottom: 1px solid #b88b20;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+    footer {
+      text-align: center;
+      color: #888;
+      margin-top: 35px;
+    }
 
-.brand {
-  display: block;
-  visibility: visible;
-  opacity: 1;
-  font-size: 25px;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 2px;
-  text-shadow: 0 0 12px rgba(229,181,46,0.35);
-  white-space: nowrap;
-  position: relative;
-  z-index: 1001;
-}
+    @media (max-width: 600px) {
+      .container {
+        padding: 14px;
+      }
 
-.brand span {
-  color: #e5b52e;
-}
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
-.menu-toggle {
-  font-size: 25px;
-  padding: 8px 14px;
-  background: transparent;
-  color: #e5b52e;
-  border: 1px solid #e5b52e;
-  border-radius: 8px;
-}
+    /* TOP NAVIGATION */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 25px;
+      background: #111;
+      border-bottom: 1px solid #b88b20;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-.menu-panel {
-  position: absolute;
-  right: 20px;
-  top: 70px;
-  width: 230px;
-  padding: 15px;
-  background: #171717;
-  border: 1px solid #e5b52e;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px #000;
-}
+    .brand {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      font-size: 25px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(229,181,46,0.35);
+      white-space: nowrap;
+      position: relative;
+      z-index: 1001;
+    }
 
-.menu-panel[hidden] {
-  display: none;
-}
+    .brand span {
+      color: #e5b52e;
+    }
 
-.menu-panel a {
-  display: block;
-  padding: 13px;
-  color: white;
-  text-decoration: none;
-  border-bottom: 1px solid #333;
-}
+    .menu-toggle {
+      font-size: 25px;
+      padding: 8px 14px;
+      background: transparent;
+      color: #e5b52e;
+      border: 1px solid #e5b52e;
+      border-radius: 8px;
+    }
 
-.menu-panel a:hover {
-  color: #e5b52e;
-}
+    .menu-panel {
+      position: absolute;
+      right: 20px;
+      top: 70px;
+      width: 230px;
+      padding: 15px;
+      background: #171717;
+      border: 1px solid #e5b52e;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px #000;
+    }
 
-.menu-panel button {
-  width: 100%;
-  margin-top: 12px;
-}
+    .menu-panel[hidden] {
+      display: none;
+    }
 
-.hero {
-  text-align: center;
-  padding: 45px 15px;
-}
+    .menu-panel a {
+      display: block;
+      padding: 13px;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+    }
 
-.gold-text {
-  color: #e5b52e;
-  letter-spacing: 3px;
-  font-size: 12px;
-}
+    .menu-panel a:hover {
+      color: #e5b52e;
+    }
 
-.robot-area {
-  margin: 35px auto;
-  padding: 35px 15px;
-  max-width: 500px;
-  background: radial-gradient(circle, #29200d, #090909 70%);
-  border: 1px solid #b88b20;
-  border-radius: 20px;
-}
+    .menu-panel button {
+      width: 100%;
+      margin-top: 12px;
+    }
 
-.robot-symbol {
-  width: 130px;
-  height: 130px;
-  margin: auto;
-  display: grid;
-  place-items: center;
-  border: 3px solid #e5b52e;
-  border-radius: 50%;
-  color: #e5b52e;
-  font-size: 42px;
-  font-weight: bold;
-  box-shadow: 0 0 30px #b88b2055;
-} 
+    .hero {
+      text-align: center;
+      padding: 45px 15px;
+    }
+
+    .gold-text {
+      color: #e5b52e;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    .robot-area {
+      margin: 35px auto;
+      padding: 35px 15px;
+      max-width: 500px;
+      background: radial-gradient(circle, #29200d, #090909 70%);
+      border: 1px solid #b88b20;
+      border-radius: 20px;
+    }
+
+    .robot-symbol {
+      width: 130px;
+      height: 130px;
+      margin: auto;
+      display: grid;
+      place-items: center;
+      border: 3px solid #e5b52e;
+      border-radius: 50%;
+      color: #e5b52e;
+      font-size: 42px;
+      font-weight: bold;
+      box-shadow: 0 0 30px #b88b2055;
+    }
   </style>
 </head>
 
 <body>
- <header class="topbar">
-  <div class="brand">MICKEY <span>BOT</span></div>
+  <header class="topbar">
+    <div class="brand">MICKEY <span>BOT</span></div>
 
-  <button id="menu-toggle" class="menu-toggle" aria-label="Open menu">
-    ☰
-  </button>
-
-  <nav id="dashboard-menu" class="menu-panel" hidden>
-    <a href="#overview">Overview</a>
-    <a href="#account">Account</a>
-    <a href="#subscription">Subscription</a>
-    <a href="#connection">MT5 Connection</a>
-    <a href="#history">Trading History</a>
-    <button id="menu-logout">Sign Out</button>
-  </nav>
-</header>
-
-<main class="container">
-
-  <section id="overview" class="hero">
-    <p class="gold-text">WELCOME TO YOUR CONTROL CENTER</p>
-    <h1>MICKEY BOT VIP</h1>
-    <p>Your automated trading dashboard</p>
-
-    <div class="robot-area">
-      <div class="robot-symbol">MB</div>
-      <h2>MICKEY BOT</h2>
-      <p>BOT STATUS: NOT CONNECTED</p>
-    </div>
-  </section>
-<section class="card" id="mt5-account">
-  <h3>MT5 ACCOUNT TYPE</h3>
-  <p>Select the account you want to connect:</p>
-
-  <label for="mt5-mode">Account Type</label>
-  <select id="mt5-mode">
-    <option value="demo">Demo Account</option>
-    <option value="live">Live Account</option>
-  </select>
-
-  <p id="mt5-mode-status">Selected: Demo Account</p>
-</section>
-  <section class="grid">
-
-    <div class="card" id="account">
-      <h3>ACCOUNT</h3>
-      <p id="account-status">Checking account...</p>
-      <p id="mb-vip-access">VIP access: Checking...</p>
-    </div>
-
-    <div class="card" id="subscription">
-      <h3>SUBSCRIPTION</h3>
-      <p id="mb-trial-status">Trial status: Loading...</p>
-      <p id="mb-trial-days">Days remaining: Loading...</p>
-    </div>
-
-    <div class="card" id="connection">
-  <h3>MT5 CONNECTION</h3>
-
-  <label for="mt5-server">Broker Server</label>
-  <input
-    type="text"
-    id="mt5-server"
-    placeholder="Enter your Exness MT5 server"
-  >
-
-  <label for="mt5-login">MT5 Account Number</label>
-  <input
-    type="text"
-    id="mt5-login"
-    placeholder="Enter your MT5 login number"
-  >
-
-  <button type="button" id="mt5-connect">
-    CONNECT MT5
-  </button>
-
-  <p id="mt5-connection-status">
-    Connection: Not connected
-  </p>
-
-  <p class="gold-text">
-   MT5 connection service is under development. Your account is not connected and no trades will be placed.
-  </p>
-</div>
-
-   <div class="card" id="bot-control">
-  <h3>MICKEY BOT CONTROL CENTER</h3>
-
-  <p>Mode: <strong id="bot-mode">DEMO</strong></p>
-  <p>Bot Status: <strong id="bot-status">STOPPED</strong></p>
-  <p>Market Analysis: <strong id="market-status">WAITING</strong></p>
-  <p>Trading Signal: <strong id="trading-signal">HOLD</strong></p>
-
-  <hr>
-
-  <h3>RISK MANAGEMENT</h3>
-  <p id="mb-risk-save-status">Risk settings not saved yet.</p>
-     <label for="mb-stop-loss">Stop Loss (pips)</label>
-<input type="number" id="mb-stop-loss" min="1" placeholder="Enter stop loss in pips">
-  <label for="mb-daily-loss">Daily Loss Limit (USD)</label>
-<input type="number" id="mb-daily-loss" min="1" placeholder="Enter daily loss limit">
-
-  <p class="gold-text">
-    Trading engine: Not connected
-  </p><div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
-  <button type="button" id="start-demo-bot">
-    START DEMO BOT
-  </button>
-
-  <button type="button" id="stop-demo-bot">
-    STOP BOT
-  </button>
-</div>
-
-<p id="demo-bot-message">
-  Demo simulation is stopped.
-</p>
-</div>
-
-  </section>
-
-  <section class="card" id="history">
-    <h3>TRADING HISTORY</h3>
-    <p>No trading activity available yet.</p>
-  </section>
-  <section class="card" id="admin-activation" hidden>
-    <h3>MICKEY BOT ADMIN ACTIVATION</h3>
-
-    <p>Generate a customer activation code after verifying payment.</p>
-
-    <label for="activation-plan">Select Package</label>
-    <select id="activation-plan">
-      <option value="premium">Premium Bot - $50</option>
-      <option value="vip">VIP Bot - $100</option>
-    </select>
-
-    <button type="button" id="generate-activation">
-      GENERATE ACTIVATION CODE
+    <button id="menu-toggle" class="menu-toggle" aria-label="Open menu">
+      ☰
     </button>
 
-    <p id="activation-status">Waiting...</p>
-    <p id="activation-code-result"></p>
-      </section>
-  
+    <nav id="dashboard-menu" class="menu-panel" hidden>
+      <a href="#overview">Overview</a>
+      <a href="#account">Account</a>
+      <a href="#subscription">Subscription</a>
+      <a href="#connection">MT5 Connection</a>
+      <a href="#history">Trading History</a>
+      <button id="menu-logout">Sign Out</button>
+    </nav>
+  </header>
 
-  <section class="card" id="payment">
-    <h3>MICKEY BOT SUBSCRIPTION</h3>
-    <p>Choose your Premium or VIP package and contact customer service to complete payment.</p>
-    <a href="payment.html" class="btn">VIEW SUBSCRIPTION PLANS</a>
-  </section>
+  <main class="container">
 
-  <footer>
-  
+    <section id="overview" class="hero">
+      <p class="gold-text">WELCOME TO YOUR CONTROL CENTER</p>
+      <h1>MICKEY BOT VIP</h1>
+      <p>Your automated trading dashboard</p>
 
-    <p>Trading involves risk. Profits are never guaranteed.</p>
-  </footer>
+      <div class="robot-area">
+        <div class="robot-symbol">MB</div>
+        <h2>MICKEY BOT</h2>
+        <p>BOT STATUS: NOT CONNECTED</p>
+      </div>
+    </section>
 
-</main>
+    <section class="card" id="mt5-account">
+      <h3>MT5 ACCOUNT TYPE</h3>
+      <p>Select the account you want to connect:</p>
+
+      <label for="mt5-mode">Account Type</label>
+      <select id="mt5-mode">
+        <option value="demo">Demo Account</option>
+        <option value="live">Live Account</option>
+      </select>
+
+      <p id="mt5-mode-status">Selected: Demo Account</p>
+    </section>
+
+    <section class="grid">
+
+      <div class="card" id="account">
+        <h3>ACCOUNT</h3>
+        <p id="account-status">Checking account...</p>
+        <p id="mb-vip-access">VIP access: Checking...</p>
+      </div>
+
+      <div class="card" id="subscription">
+        <h3>SUBSCRIPTION</h3>
+        <p id="mb-trial-status">Trial status: Loading...</p>
+        <p id="mb-trial-days">Days remaining: Loading...</p>
+      </div>
+
+      <div class="card" id="connection">
+        <h3>MT5 CONNECTION</h3>
+
+        <label for="mt5-server">Broker Server</label>
+        <input
+          type="text"
+          id="mt5-server"
+          placeholder="Enter your Exness MT5 server"
+        >
+
+        <label for="mt5-login">MT5 Account Number</label>
+        <input
+          type="text"
+          id="mt5-login"
+          placeholder="Enter your MT5 login number"
+        >
+
+        <button type="button" id="mt5-connect">
+          CONNECT MT5
+        </button>
+
+        <p id="mt5-connection-status">
+          Connection: Not connected
+        </p>
+
+        <p class="gold-text">
+          MT5 connection service is under development. Your account is not connected and no trades will be placed.
+        </p>
+      </div>
+
+      <div class="card" id="bot-control">
+        <h3>MICKEY BOT CONTROL CENTER</h3>
+
+        <p>Mode: <strong id="bot-mode">DEMO</strong></p>
+        <p>Bot Status: <strong id="bot-status">STOPPED</strong></p>
+        <p>Market Analysis: <strong id="market-status">WAITING</strong></p>
+        <p>Trading Signal: <strong id="trading-signal">HOLD</strong></p>
+
+        <hr>
+
+        <h3>RISK MANAGEMENT</h3>
+        <p id="mb-risk-save-status">Risk settings not saved yet.</p>
+
+        <label for="mb-stop-loss">Stop Loss (pips)</label>
+        <input type="number" id="mb-stop-loss" min="1" placeholder="Enter stop loss in pips">
+
+        <label for="mb-daily-loss">Daily Loss Limit (USD)</label>
+        <input type="number" id="mb-daily-loss" min="1" placeholder="Enter daily loss limit">
+
+        <p class="gold-text">
+          Trading engine: Not connected
+        </p>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+          <button type="button" id="start-demo-bot">
+            START DEMO BOT
+          </button>
+
+          <button type="button" id="stop-demo-bot">
+            STOP BOT
+          </button>
+        </div>
+
+        <p id="demo-bot-message">
+          Demo simulation is stopped.
+        </p>
+      </div>
+
+    </section>
+
+    <section class="card" id="history">
+      <h3>TRADING HISTORY</h3>
+      <p>No trading activity available yet.</p>
+    </section>
+
+    <section class="card" id="admin-activation" hidden>
+      <h3>MICKEY BOT ADMIN ACTIVATION</h3>
+
+      <p>Generate a customer activation code after verifying payment.</p>
+
+      <label for="activation-plan">Select Package</label>
+      <select id="activation-plan">
+        <option value="premium">Premium Bot - $50</option>
+        <option value="vip">VIP Bot - $100</option>
+      </select>
+
+      <button type="button" id="generate-activation">
+        GENERATE ACTIVATION CODE
+      </button>
+
+      <p id="activation-status">Waiting...</p>
+      <p id="activation-code-result"></p>
+    </section>
+
+    <!-- CUSTOMER ACTIVATION: ONLY ONE COPY -->
+    <section class="card" id="customer-activation">
+      <h3>ACTIVATE MY MICKEY BOT</h3>
+
+      <p>Already purchased a package? Enter your activation code below.</p>
+
+      <label for="customer-activation-code">Activation Code</label>
+
+      <input
+        type="text"
+        id="customer-activation-code"
+        placeholder="Enter your activation code"
+        autocomplete="off"
+      >
+
+      <button type="button" id="redeem-activation">
+        ACTIVATE MY BOT
+      </button>
+
+      <p id="customer-activation-status">
+        Waiting for activation...
+      </p>
+    </section>
+
+    <section class="card" id="payment">
+      <h3>MICKEY BOT SUBSCRIPTION</h3>
+      <p>Choose your Premium or VIP package and contact customer service to complete payment.</p>
+      <a href="payment.html" class="btn">VIEW SUBSCRIPTION PLANS</a>
+    </section>
+
+    <footer>
+      <p>Trading involves risk. Profits are never guaranteed.</p>
+    </footer>
+
+  </main>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
+
+  <script>
     const SUPABASE_URL = "https://vbvjzpavlmhxapxiylwt.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_uJw72-BHGI20JGYU_hzJ2Q_ZL3dym1a";
@@ -357,6 +408,7 @@ footer {
     async function loadDashboard(user) {
       document.getElementById("account-status").textContent =
         "Account status: Registered";
+
       const adminPanel = document.getElementById("admin-activation");
       adminPanel.hidden = true;
 
@@ -369,6 +421,7 @@ footer {
       if (!adminCheckError && adminRecord) {
         adminPanel.hidden = false;
       }
+
       const { data, error } = await mbClient
         .from("subscriptions")
         .select("plan,status,starts_at,ends_at")
@@ -382,6 +435,7 @@ footer {
       document.getElementById("mb-vip-access").textContent =
         vipError ? "VIP access: Unable to verify" :
         vipAccess ? "VIP access: Active" : "VIP access: Not active";
+
       const { data: riskSettings, error: riskError } = await mbClient
         .from("user_risk_settings")
         .select("stop_loss_pips,daily_loss_limit_usd")
@@ -390,23 +444,27 @@ footer {
 
       if (riskError) {
         console.error("Risk settings load failed:", riskError.message);
+
         document.getElementById("mb-risk-save-status").textContent =
           "Could not load saved risk settings.";
       } else if (riskSettings) {
         document.getElementById("mb-stop-loss").value =
           riskSettings.stop_loss_pips;
+
         document.getElementById("mb-daily-loss").value =
           riskSettings.daily_loss_limit_usd;
 
         document.getElementById("mb-risk-save-status").textContent =
           "Saved risk settings loaded.";
       }
+
       if (error || !data) {
         document.getElementById("mb-trial-status").textContent =
           error ? "Trial status: Unable to load" : "Trial status: No trial found";
 
         document.getElementById("mb-trial-days").textContent =
           "Days remaining: 0";
+
         return;
       }
 
@@ -417,10 +475,8 @@ footer {
         remaining > 0 ? "Trial status: Active" : "Trial status: Expired";
 
       document.getElementById("mb-trial-days").textContent =
-  "Days remaining: " + days;
-
-
-}
+        "Days remaining: " + days;
+    }
 
     async function checkSession() {
       const { data, error } = await mbClient.auth.getSession();
@@ -439,160 +495,240 @@ footer {
       }
     });
 
-  document.getElementById("menu-logout").onclick = async () => {
-  const { error } = await mbClient.auth.signOut();
+    document.getElementById("menu-logout").onclick = async () => {
+      const { error } = await mbClient.auth.signOut();
 
-  if (error) {
-    alert("Sign out failed: " + error.message);
-  } else {
-    window.location.replace("index.html");
-  }
-};
+      if (error) {
+        alert("Sign out failed: " + error.message);
+      } else {
+        window.location.replace("index.html");
+      }
+    };
 
-document.getElementById("menu-toggle").onclick = () => {
-  const menu = document.getElementById("dashboard-menu");
-  menu.hidden = !menu.hidden;
-};
-const mt5Mode = document.getElementById("mt5-mode");
-const mt5ModeStatus = document.getElementById("mt5-mode-status");
+    document.getElementById("menu-toggle").onclick = () => {
+      const menu = document.getElementById("dashboard-menu");
+      menu.hidden = !menu.hidden;
+    };
 
-mt5Mode.addEventListener("change", () => {
-  const selected = mt5Mode.value;
+    const mt5Mode = document.getElementById("mt5-mode");
+    const mt5ModeStatus = document.getElementById("mt5-mode-status");
 
-  localStorage.setItem("mickeyBotMode", selected);
+    mt5Mode.addEventListener("change", () => {
+      const selected = mt5Mode.value;
 
-  document.getElementById("bot-mode").textContent = selected.toUpperCase();
+      localStorage.setItem("mickeyBotMode", selected);
 
-  mt5ModeStatus.textContent =
-    "Selected: " + (selected === "demo" ? "Demo Account" : "Live Account");
-});
+      document.getElementById("bot-mode").textContent =
+        selected.toUpperCase();
 
-const savedMode = localStorage.getItem("mickeyBotMode") || "demo";
+      mt5ModeStatus.textContent =
+        "Selected: " + (selected === "demo" ? "Demo Account" : "Live Account");
+    });
 
-mt5Mode.value = savedMode;
-document.getElementById("bot-mode").textContent = savedMode.toUpperCase();
+    const savedMode = localStorage.getItem("mickeyBotMode") || "demo";
 
-mt5ModeStatus.textContent =
-  "Selected: " + (savedMode === "demo" ? "Demo Account" : "Live Account");
+    mt5Mode.value = savedMode;
 
-  const mt5ConnectButton = document.getElementById("mt5-connect");
+    document.getElementById("bot-mode").textContent =
+      savedMode.toUpperCase();
 
-mt5ConnectButton.addEventListener("click", () => {
-  const server = document.getElementById("mt5-server").value.trim();
-  const login = document.getElementById("mt5-login").value.trim();
-  const status = document.getElementById("mt5-connection-status");
+    mt5ModeStatus.textContent =
+      "Selected: " + (savedMode === "demo" ? "Demo Account" : "Live Account");
 
-  if (!server || !login) {
-    status.textContent = "Please enter your MT5 server and account number.";
-    return;
-  }
+    const mt5ConnectButton = document.getElementById("mt5-connect");
 
-  status.textContent =
-    "Details entered. Secure MT5 connection service is not configured yet.";
-});  
-const stopLossInput = document.getElementById("mb-stop-loss");
-const dailyLossInput = document.getElementById("mb-daily-loss");
+    mt5ConnectButton.addEventListener("click", () => {
+      const server = document.getElementById("mt5-server").value.trim();
+      const login = document.getElementById("mt5-login").value.trim();
+      const status = document.getElementById("mt5-connection-status");
 
-stopLossInput.value = localStorage.getItem("mickeyStopLoss") || "50";
-dailyLossInput.value = localStorage.getItem("mickeyDailyLoss") || "10";
+      if (!server || !login) {
+        status.textContent =
+          "Please enter your MT5 server and account number.";
+        return;
+      }
 
-const riskSaveStatus = document.getElementById("mb-risk-save-status");
+      status.textContent =
+        "Details entered. Secure MT5 connection service is not configured yet.";
+    });
 
-stopLossInput.addEventListener("change", () => {
-  localStorage.setItem("mickeyStopLoss", stopLossInput.value);
-  saveRiskSettings();
-});
+    const stopLossInput = document.getElementById("mb-stop-loss");
+    const dailyLossInput = document.getElementById("mb-daily-loss");
 
-dailyLossInput.addEventListener("change", () => {
-  localStorage.setItem("mickeyDailyLoss", dailyLossInput.value);
-  saveRiskSettings();
-});
-async function saveRiskSettings() {
-  const { data: sessionData, error: sessionError } =
-    await mbClient.auth.getSession();
+    stopLossInput.value = localStorage.getItem("mickeyStopLoss") || "50";
+    dailyLossInput.value = localStorage.getItem("mickeyDailyLoss") || "10";
 
-  if (sessionError || !sessionData.session) {
-    riskSaveStatus.textContent = "Please log in again.";
-    return;
-  }
+    const riskSaveStatus =
+      document.getElementById("mb-risk-save-status");
 
-  const stopLoss = Number(stopLossInput.value);
-  const dailyLoss = Number(dailyLossInput.value);
+    stopLossInput.addEventListener("change", () => {
+      localStorage.setItem("mickeyStopLoss", stopLossInput.value);
+      saveRiskSettings();
+    });
 
-  if (!Number.isFinite(stopLoss) || stopLoss <= 0 ||
-      !Number.isFinite(dailyLoss) || dailyLoss <= 0) {
-    riskSaveStatus.textContent = "Enter valid positive numbers.";
-    return;
-  }
+    dailyLossInput.addEventListener("change", () => {
+      localStorage.setItem("mickeyDailyLoss", dailyLossInput.value);
+      saveRiskSettings();
+    });
 
-  riskSaveStatus.textContent = "Saving...";
+    async function saveRiskSettings() {
+      const { data: sessionData, error: sessionError } =
+        await mbClient.auth.getSession();
 
-  const { error } = await mbClient
-    .from("user_risk_settings")
-    .upsert({
-      user_id: sessionData.session.user.id,
-      stop_loss_pips: stopLoss,
-      daily_loss_limit_usd: dailyLoss,
-      updated_at: new Date().toISOString()
-    }, { onConflict: "user_id" });
+      if (sessionError || !sessionData.session) {
+        riskSaveStatus.textContent = "Please log in again.";
+        return;
+      }
 
-  riskSaveStatus.textContent = error
-    ? "Save failed: " + error.message
-    : "Risk settings saved successfully.";
-}
+      const stopLoss = Number(stopLossInput.value);
+      const dailyLoss = Number(dailyLossInput.value);
 
-  const startDemoBot = document.getElementById("start-demo-bot");
-const stopDemoBot = document.getElementById("stop-demo-bot");
+      if (!Number.isFinite(stopLoss) || stopLoss <= 0 ||
+          !Number.isFinite(dailyLoss) || dailyLoss <= 0) {
+        riskSaveStatus.textContent = "Enter valid positive numbers.";
+        return;
+      }
 
-startDemoBot.addEventListener("click", () => {
-  document.getElementById("bot-status").textContent = "DEMO SIMULATION RUNNING";
-  document.getElementById("market-status").textContent = "SIMULATION ONLY";
-  document.getElementById("demo-bot-message").textContent =
-    "Demo simulation started. No real trades are being placed.";
-});
+      riskSaveStatus.textContent = "Saving...";
 
-stopDemoBot.addEventListener("click", () => {
-  document.getElementById("bot-status").textContent = "STOPPED";
-  document.getElementById("market-status").textContent = "WAITING";
-  document.getElementById("trading-signal").textContent = "HOLD";
-  document.getElementById("demo-bot-message").textContent =
-    "Demo simulation stopped. No real trades were placed.";
-});
-  const generateActivationButton =
-  document.getElementById("generate-activation");
+      const { error } = await mbClient
+        .from("user_risk_settings")
+        .upsert({
+          user_id: sessionData.session.user.id,
+          stop_loss_pips: stopLoss,
+          daily_loss_limit_usd: dailyLoss,
+          updated_at: new Date().toISOString()
+        }, { onConflict: "user_id" });
 
-generateActivationButton.addEventListener("click", async () => {
-  const status = document.getElementById("activation-status");
-  const result = document.getElementById("activation-code-result");
-  const plan = document.getElementById("activation-plan").value;
-
-  status.textContent = "Generating...";
-  result.textContent = "";
-
-  const { data, error } = await mbClient.functions.invoke(
-    "admin-activation",
-    {
-      body: { plan }
+      riskSaveStatus.textContent = error
+        ? "Save failed: " + error.message
+        : "Risk settings saved successfully.";
     }
-  );
 
-  if (error) {
-    status.textContent = "Generation failed: " + error.message;
-    return;
-  }
+    const startDemoBot = document.getElementById("start-demo-bot");
+    const stopDemoBot = document.getElementById("stop-demo-bot");
 
-  if (data?.error) {
-    status.textContent = "Generation failed: " + data.error;
-    return;
-  }
+    startDemoBot.addEventListener("click", () => {
+      document.getElementById("bot-status").textContent =
+        "DEMO SIMULATION RUNNING";
 
-  result.textContent = data.code || "No code returned.";
+      document.getElementById("market-status").textContent =
+        "SIMULATION ONLY";
 
-  status.textContent = data.code
-    ? "Code generated. Verify payment before sharing."
-    : "No code generated.";
-});
-  checkSession();
+      document.getElementById("demo-bot-message").textContent =
+        "Demo simulation started. No real trades are being placed.";
+    });
+
+    stopDemoBot.addEventListener("click", () => {
+      document.getElementById("bot-status").textContent = "STOPPED";
+      document.getElementById("market-status").textContent = "WAITING";
+      document.getElementById("trading-signal").textContent = "HOLD";
+
+      document.getElementById("demo-bot-message").textContent =
+        "Demo simulation stopped. No real trades were placed.";
+    });
+
+    /* ADMIN ACTIVATION CODE GENERATOR */
+    const generateActivationButton =
+      document.getElementById("generate-activation");
+
+    generateActivationButton.addEventListener("click", async () => {
+      const status = document.getElementById("activation-status");
+      const result = document.getElementById("activation-code-result");
+      const plan = document.getElementById("activation-plan").value;
+
+      status.textContent = "Generating...";
+      result.textContent = "";
+
+      const { data, error } = await mbClient.functions.invoke(
+        "admin-activation",
+        {
+          body: { plan }
+        }
+      );
+
+      if (error) {
+        status.textContent =
+          "Generation failed: " + error.message;
+        return;
+      }
+
+      if (data?.error) {
+        status.textContent =
+          "Generation failed: " + data.error;
+        return;
+      }
+
+      result.textContent = data.code || "No code returned.";
+
+      status.textContent = data.code
+        ? "Code generated. Verify payment before sharing."
+        : "No code generated.";
+    });
+
+    /* CUSTOMER ACTIVATION CODE REDEMPTION */
+    const redeemActivationButton =
+      document.getElementById("redeem-activation");
+
+    redeemActivationButton.addEventListener("click", async () => {
+      const codeInput =
+        document.getElementById("customer-activation-code");
+
+      const status =
+        document.getElementById("customer-activation-status");
+
+      const code = codeInput.value.trim();
+
+      if (!code) {
+        status.textContent = "Please enter your activation code.";
+        return;
+      }
+
+      redeemActivationButton.disabled = true;
+      status.textContent = "Checking activation code...";
+
+      try {
+        const { data, error } = await mbClient.rpc(
+          "redeem_mickey_activation",
+          { p_code: code }
+        );
+
+        if (error) {
+          status.textContent =
+            "Activation failed: " + error.message;
+          return;
+        }
+
+        if (!data?.success) {
+          status.textContent =
+            data?.error || "Activation failed.";
+          return;
+        }
+
+        status.textContent =
+          "Success! Your " + data.plan.toUpperCase() +
+          " subscription has been activated.";
+
+        codeInput.value = "";
+
+        const { data: sessionData, error: sessionError } =
+          await mbClient.auth.getSession();
+
+        if (!sessionError && sessionData.session) {
+          await loadDashboard(sessionData.session.user);
+        }
+
+      } catch (err) {
+        console.error("Activation error:", err);
+
+        status.textContent =
+          "Something went wrong. Please try again.";
+      } finally {
+        redeemActivationButton.disabled = false;
+      }
+    });
+
+    checkSession();
   </script>
 </body>
 </html>
