@@ -310,9 +310,26 @@ footer {
     <h3>TRADING HISTORY</h3>
     <p>No trading activity available yet.</p>
   </section>
+  <section class="card" id="admin-activation" hidden>
+    <h3>MICKEY BOT ADMIN ACTIVATION</h3>
 
+    <p>Generate a customer activation code after verifying payment.</p>
+
+    <label for="activation-plan">Select Package</label>
+    <select id="activation-plan">
+      <option value="premium">Premium Bot - $50</option>
+      <option value="vip">VIP Bot - $100</option>
+    </select>
+
+    <button type="button" id="generate-activation">
+      GENERATE ACTIVATION CODE
+    </button>
+
+    <p id="activation-status">Waiting...</p>
+    <p id="activation-code-result"></p>
+  </section>
   <footer>
-    MICKEY BOT © 2026
+
     <p>Trading involves risk. Profits are never guaranteed.</p>
   </footer>
 
@@ -331,7 +348,18 @@ footer {
     async function loadDashboard(user) {
       document.getElementById("account-status").textContent =
         "Account status: Registered";
+      const adminPanel = document.getElementById("admin-activation");
+      adminPanel.hidden = true;
 
+      const { data: adminRecord, error: adminCheckError } = await mbClient
+        .from("admin_users")
+        .select("user_id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (!adminCheckError && adminRecord) {
+        adminPanel.hidden = false;
+      }
       const { data, error } = await mbClient
         .from("subscriptions")
         .select("plan,status,starts_at,ends_at")
