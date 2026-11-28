@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MICKEY BOT | Subscription Activation</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #090909;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 25px 15px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+h1 span {
+  color: #e5b52e;
+}
+
+.subtitle {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: #151515;
+  border: 1px solid #333;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.plan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #202020;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+
+.price {
+  color: #e5b52e;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin: 15px 0 7px;
+  color: #ddd;
+}
+
+input, select {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #222;
+  color: white;
+  font-size: 15px;
+}
+
+button, .contact {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.submit {
+  background: #e5b52e;
+  color: #111;
+}
+
+.whatsapp {
+  background: #168b49;
+  color: white;
+}
+
+.telegram {
+  background: #1688c9;
+  color: white;
+}
+
+.note {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+.footer {
+  text-align: center;
+  color: #777;
+  font-size: 12px;
+  margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>MICKEY <span>BOT</span></h1>
+<p class="subtitle">Subscription & Activation Center</p>
+
+<div class="card">
+<h2>Choose Your Package</h2>
+
+<div class="plan">
+<strong>PREMIUM BOT</strong>
+<span class="price">$50/month</span>
+</div>
+
+<div class="plan">
+<strong>VIP BOT</strong>
+<span class="price">$100/month</span>
+</div>
+
+<p class="note">
+Payment method: USDT cryptocurrency.
+Contact customer service to receive payment instructions.
+Access is granted only after payment verification.
+</p>
+</div>
+
+<div class="card">
+<h2>Submit Payment Details</h2>
+
+<form id="paymentForm">
+
+<label>Your Full Name</label>
+<input id="customerName" required placeholder="Enter your name">
+
+<label>Email Address</label>
+<input id="customerEmail" type="email" required placeholder="Enter your email">
+
+<label>Select Package</label>
+<select id="package" required>
+<option value="">Choose a package</option>
+<option value="Premium Bot - $50/month">Premium Bot - $50/month</option>
+<option value="VIP Bot - $100/month">VIP Bot - $100/month</option>
+</select>
+
+<label>Transaction ID (if already paid)</label>
+<input id="transactionId" placeholder="Enter transaction ID">
+
+<button class="submit" type="submit">
+Send Payment Details
+</button>
+
+</form>
+
+<p class="note">
+After sending your details, contact customer service and send your payment screenshot. Your payment will be checked before an activation code is issued.
+</p>
+</div>
+
+<div class="card">
+<h2>Customer Service</h2>
+
+<a class="contact whatsapp"
+href="https://wa.me/23280570792"
+target="_blank">
+Contact Us on WhatsApp
+</a>
+
+<a class="contact telegram"
+href="https://t.me/d_mickey_24"
+target="_blank">
+Contact Us on Telegram
+</a>
+
+<p class="note">
+Our customer service team will assist you with payment and activation.
+</p>
+</div>
+
+<p class="footer">
+© 2026 MICKEY BOT. All rights reserved.
+</p>
+
+</div>
+
+<script>
+document.getElementById("paymentForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("customerName").value.trim();
+  const email = document.getElementById("customerEmail").value.trim();
+  const selectedPackage = document.getElementById("package").value;
+  const transaction = document.getElementById("transactionId").value.trim();
+
+  const message =
+    "MICKEY BOT PAYMENT DETAILS\n\n" +
+    "Name: " + name + "\n" +
+    "Email: " + email + "\n" +
+    "Package: " + selectedPackage + "\n" +
+    "Transaction ID: " + (transaction || "Not paid yet") +
+    "\n\nI would like assistance with payment and activation.";
+
+  window.open(
+    "https://wa.me/23280570792?text=" + encodeURIComponent(message),
+    "_blank"
+  );
+});
+</script>
+
+</body>
+</html>
